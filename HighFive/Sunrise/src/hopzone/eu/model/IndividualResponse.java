@@ -119,6 +119,8 @@ public class IndividualResponse extends IResponse
 				_serverTime = Utilities.millisecondsFromString(response.getString(TOPSITE.toLowerCase() + "_server_time"), "Europe/Athens");
 				break;
 			case "TOP4TEAMBR":
+				_voteTime = Utilities.millisecondsFromString(response.getString(TOPSITE.toLowerCase() + "_vote_time"), "America/Sao_Paulo");
+				_serverTime = Utilities.millisecondsFromString(response.getString(TOPSITE.toLowerCase() + "_server_time"), "America/Sao_Paulo");
 				break;
 			default:
 				_hasVoted = false;

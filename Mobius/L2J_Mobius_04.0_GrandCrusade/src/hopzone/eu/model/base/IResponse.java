@@ -107,7 +107,7 @@ public abstract class IResponse
 			}
 			else if (TOPSITE.equals("TOP4TEAMBR"))
 			{
-				String urlParameters = "apiKey=" + Configurations.TOP4TEAMBR_API_KEY + "&type=1&player=";
+				String urlParameters = "apiKey=" + Configurations.TOP4TEAMBR_API_KEY;
 				byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
 				int postDataLength = postData.length;
 				connection.setRequestMethod("POST");
