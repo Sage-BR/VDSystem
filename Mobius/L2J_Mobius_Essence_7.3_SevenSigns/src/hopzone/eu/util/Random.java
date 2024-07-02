@@ -38,7 +38,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public final class Random
@@ -47,17 +47,17 @@ public final class Random
 	{
 		return ThreadLocalRandom.current().nextInt(n);
 	}
-
+	
 	public static int get(int n)
 	{
 		return nextInt(n);
 	}
-
+	
 	public static int get(int min, int max)
 	{
 		return ThreadLocalRandom.current().nextInt(min, max == Integer.MAX_VALUE ? max : max + 1);
 	}
-
+	
 	public static long get(long min, long max)
 	{
 		return ThreadLocalRandom.current().nextLong(min, max == Long.MAX_VALUE ? max : max + 1L);

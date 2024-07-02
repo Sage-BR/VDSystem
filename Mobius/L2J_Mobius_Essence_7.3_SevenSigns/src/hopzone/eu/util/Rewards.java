@@ -43,7 +43,7 @@ import java.util.Set;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public enum Rewards
@@ -68,25 +68,15 @@ public enum Rewards
 	L2RANKZONE_GLOBAL_REWARDS(Configurations.L2RANKZONE_GLOBAL_REWARDS),
 	TOP4TEAMBR_INDIVIDUAL_REWARDS(Configurations.TOP4TEAMBR_INDIVIDUAL_REWARDS),
 	TOP4TEAMBR_GLOBAL_REWARDS(Configurations.TOP4TEAMBR_GLOBAL_REWARDS);
-
-	private final Map<Integer, List<Long[]>> _list;
+	
 	private static final Rewards[] _rewards = values();
-
+	private final Map<Integer, List<Long[]>> _list;
+	
 	Rewards(final Map<Integer, List<Long[]>> text)
 	{
 		_list = text;
 	}
-
-	public Set<Integer> keys()
-	{
-		return _list.keySet();
-	}
-
-	public Long[] get(int id)
-	{
-		return _list.get(id).get(0);
-	}
-
+	
 	/**
 	 * returns enum from string
 	 *
@@ -96,5 +86,15 @@ public enum Rewards
 	public static Rewards from(String TOPSITE)
 	{
 		return Arrays.stream(_rewards).filter(s -> s.name().equalsIgnoreCase(TOPSITE)).findFirst().orElse(ITOPZ_INDIVIDUAL_REWARDS);
+	}
+	
+	public Set<Integer> keys()
+	{
+		return _list.keySet();
+	}
+	
+	public Long[] get(int id)
+	{
+		return _list.get(id).get(0);
 	}
 }

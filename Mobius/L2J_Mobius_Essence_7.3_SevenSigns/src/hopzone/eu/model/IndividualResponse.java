@@ -42,19 +42,19 @@ import hopzone.eu.util.Json;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class IndividualResponse extends IResponse
 {
+	private final String _IPAddress;
 	// local variables
 	private boolean _hasVoted;
 	private long _voteTime;
 	private long _serverTime;
 	private String _voteError;
 	private int _responseCode;
-	private final String _IPAddress;
-
+	
 	/**
 	 * Constructor
 	 *
@@ -66,7 +66,19 @@ public class IndividualResponse extends IResponse
 		super(url);
 		_IPAddress = IPAddress;
 	}
-
+	
+	/**
+	 * Return response
+	 *
+	 * @param url       string
+	 * @param IPAddress string
+	 * @return IndividualResponse object
+	 */
+	public static IndividualResponse OPEN(final String url, final String IPAddress)
+	{
+		return new IndividualResponse(url, IPAddress);
+	}
+	
 	/**
 	 * on fetch data set local variables
 	 *
@@ -81,7 +93,7 @@ public class IndividualResponse extends IResponse
 		_voteTime = -1;
 		_serverTime = -1;
 		_voteError = "NONE";
-
+		
 		switch (TOPSITE)
 		{
 			case "HOPZONE":
@@ -128,7 +140,7 @@ public class IndividualResponse extends IResponse
 				break;
 		}
 	}
-
+	
 	/**
 	 * Replace the url address
 	 *
@@ -140,7 +152,7 @@ public class IndividualResponse extends IResponse
 	{
 		return retailURL.replace("%IP%", _IPAddress);
 	}
-
+	
 	/**
 	 * Connection
 	 *
@@ -151,7 +163,7 @@ public class IndividualResponse extends IResponse
 	{
 		return (IndividualResponse) super.connect(TOPSITE, TYPE);
 	}
-
+	
 	/**
 	 * Returns response code
 	 *
@@ -161,7 +173,7 @@ public class IndividualResponse extends IResponse
 	{
 		return _responseCode;
 	}
-
+	
 	/**
 	 * Returns last error
 	 *
@@ -171,7 +183,7 @@ public class IndividualResponse extends IResponse
 	{
 		return _voteError;
 	}
-
+	
 	/**
 	 * Returns voted value
 	 *
@@ -181,7 +193,7 @@ public class IndividualResponse extends IResponse
 	{
 		return _hasVoted;
 	}
-
+	
 	/**
 	 * Returns server time value
 	 *
@@ -191,7 +203,7 @@ public class IndividualResponse extends IResponse
 	{
 		return _serverTime;
 	}
-
+	
 	/**
 	 * Returns vote time value
 	 *
@@ -200,17 +212,5 @@ public class IndividualResponse extends IResponse
 	public long getVoteTime()
 	{
 		return _voteTime;
-	}
-
-	/**
-	 * Return response
-	 *
-	 * @param url       string
-	 * @param IPAddress string
-	 * @return IndividualResponse object
-	 */
-	public static IndividualResponse OPEN(final String url, final String IPAddress)
-	{
-		return new IndividualResponse(url, IPAddress);
 	}
 }

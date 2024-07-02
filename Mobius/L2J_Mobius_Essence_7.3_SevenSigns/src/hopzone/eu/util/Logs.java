@@ -39,18 +39,18 @@ import java.util.logging.Logger;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class Logs
 {
 	private final Logger _logger;
-
+	
 	public Logs(String name)
 	{
 		_logger = Logger.getLogger(name);
 	}
-
+	
 	public void log(String str)
 	{
 		String s = "=[ " + str + " ]";
@@ -60,18 +60,18 @@ public class Logs
 		}
 		info(s);
 	}
-
+	
 	private void log0(Level level, StackTraceElement caller, Object message, Throwable exception)
 	{
 		if (!_logger.isLoggable(level))
 			return;
-
+		
 		if (caller == null)
 			caller = new Throwable().getStackTrace()[2];
-
+		
 		_logger.logp(level, caller.getClassName(), caller.getMethodName(), String.valueOf(message), exception);
 	}
-
+	
 	/**
 	 * Logs a message with Level.INFO.
 	 *
@@ -81,7 +81,7 @@ public class Logs
 	{
 		log0(Level.INFO, null, message, null);
 	}
-
+	
 	/**
 	 * Logs a message with Level.WARNING.
 	 *
@@ -91,7 +91,7 @@ public class Logs
 	{
 		log0(Level.WARNING, null, message, null);
 	}
-
+	
 	/**
 	 * Logs a message with Level.SEVERE.
 	 *
@@ -101,7 +101,7 @@ public class Logs
 	{
 		log0(Level.SEVERE, null, message, null);
 	}
-
+	
 	/**
 	 * Logs a message with Level.SEVERE.
 	 *

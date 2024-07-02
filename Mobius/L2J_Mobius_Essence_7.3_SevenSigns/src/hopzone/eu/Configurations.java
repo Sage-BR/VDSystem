@@ -44,19 +44,19 @@ import java.util.*;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class Configurations
 {
 	// logger
 	private static final Logs _log = new Logs(Configurations.class.getSimpleName());
-
+	
 	public static boolean DEBUG;
-
+	
 	// set delivery manager variables
 	public static boolean ITEM_DELIVERY_MANAGER;
-
+	
 	// set console variables
 	public static boolean VDS_CONSOLE_ENABLE;
 	public static String VDS_CONSOLE_FONT;
@@ -66,7 +66,7 @@ public class Configurations
 	public static int VDS_CONSOLE_COLOR_B;
 	public static int VDS_CONSOLE_WIDTH;
 	public static int VDS_CONSOLE_HEIGHT;
-
+	
 	// set https://hopzone.eu global reward variables
 	public static boolean HOPZONE_EU_GLOBAL_REWARD;
 	public static int HOPZONE_EU_SERVER_ID;
@@ -78,7 +78,7 @@ public class Configurations
 	// set https://hopzone.eu individual variables
 	public static boolean HOPZONE_EU_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> HOPZONE_EU_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set itopz global reward variables
 	public static boolean ITOPZ_GLOBAL_REWARD;
 	public static int ITOPZ_SERVER_ID;
@@ -90,7 +90,7 @@ public class Configurations
 	// set itopz individual variables
 	public static boolean ITOPZ_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> ITOPZ_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set hopzone global reward variables
 	public static boolean HOPZONE_NET_GLOBAL_REWARD;
 	public static String HOPZONE_NET_SERVER_API_KEY;
@@ -101,7 +101,7 @@ public class Configurations
 	// set hopzone individual variables
 	public static boolean HOPZONE_NET_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> HOPZONE_NET_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set l2topgameserver global reward variables
 	public static boolean L2TOPGAMESERVER_GLOBAL_REWARD;
 	public static String L2TOPGAMESERVER_API_KEY;
@@ -112,7 +112,7 @@ public class Configurations
 	// set l2topgameserver individual variables
 	public static boolean L2TOPGAMESERVER_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> L2TOPGAMESERVER_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set l2jbrasil global reward variables
 	public static boolean L2JBRASIL_GLOBAL_REWARD;
 	public static String L2JBRASIL_USER_NAME;
@@ -123,7 +123,7 @@ public class Configurations
 	// set l2jbrasil individual variables
 	public static boolean L2JBRASIL_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> L2JBRASIL_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set l2network global reward variables
 	public static boolean L2NETWORK_GLOBAL_REWARD;
 	public static String L2NETWORK_API_KEY;
@@ -135,7 +135,7 @@ public class Configurations
 	// set l2network individual variables
 	public static boolean L2NETWORK_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> L2NETWORK_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set hotservers global reward variables
 	public static boolean HOTSERVERS_GLOBAL_REWARD;
 	public static String HOTSERVERS_API_KEY;
@@ -148,7 +148,7 @@ public class Configurations
 	// set hotservers individual variables
 	public static boolean HOTSERVERS_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> HOTSERVERS_INDIVIDUAL_REWARDS = new HashMap<>();
-
+	
 	// set l2votes global reward variables
 	public static boolean L2VOTES_GLOBAL_REWARD;
 	public static String L2VOTES_API_KEY;
@@ -183,7 +183,7 @@ public class Configurations
 	public static boolean TOP4TEAMBR_INDIVIDUAL_REWARD;
 	public static Map<Integer, List<Long[]>> TOP4TEAMBR_INDIVIDUAL_REWARDS = new HashMap<>();
 	
-
+	
 	/**
 	 * load config variables
 	 */
@@ -191,10 +191,10 @@ public class Configurations
 	{
 		// load configuration file
 		Properties ep = initProperties("./config/VDSystem.properties");
-
+		
 		// debug messages
 		DEBUG = Boolean.parseBoolean(ep.getProperty("VDS_DEBUG", "false"));
-
+		
 		// set console variables
 		VDS_CONSOLE_ENABLE = Boolean.parseBoolean(ep.getProperty("ConsoleEnable", "true"));
 		VDS_CONSOLE_FONT = ep.getProperty("ConsoleFont", "Arial");
@@ -204,10 +204,10 @@ public class Configurations
 		VDS_CONSOLE_COLOR_B = Integer.parseInt(ep.getProperty("ConsoleColorB", "241"));
 		VDS_CONSOLE_WIDTH = Integer.parseInt(ep.getProperty("ConsoleWidth", "400"));
 		VDS_CONSOLE_HEIGHT = Integer.parseInt(ep.getProperty("ConsoleHeight", "350"));
-
+		
 		// set delivery manager variables
 		ITEM_DELIVERY_MANAGER = Boolean.parseBoolean(ep.getProperty("DeliveryManager", "true"));
-
+		
 		/* set https://hopzone.eu global reward variables */
 		HOPZONE_EU_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("HopZoneEuGlobalVoteReward", "false"));
 		HOPZONE_EU_SERVER_ID = Integer.parseInt(ep.getProperty("HopZoneEuServerID", "325339"));
@@ -225,11 +225,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-					Long.parseLong(parts[1].split("-")[0]),
-					Long.parseLong(parts[1].split("-")[1]),
-					Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				HOPZONE_EU_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -245,15 +245,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-					Long.parseLong(parts[1].split("-")[0]),
-					Long.parseLong(parts[1].split("-")[1]),
-					Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				HOPZONE_EU_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set itopz global reward variables
 		ITOPZ_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("iTopZGlobalVoteReward", "false"));
 		ITOPZ_SERVER_ID = Integer.parseInt(ep.getProperty("ServerID", "325339"));
@@ -271,11 +271,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				ITOPZ_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -291,15 +291,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				ITOPZ_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set hopzone global reward variables
 		HOPZONE_NET_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("HopzoneGlobalVoteReward", "false"));
 		HOPZONE_NET_SERVER_API_KEY = ep.getProperty("HopzoneApiKey", "DEMO");
@@ -316,11 +316,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				HOPZONE_NET_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -336,15 +336,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				HOPZONE_NET_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set l2topgameserver global reward variables
 		L2TOPGAMESERVER_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("L2TopGSGlobalVoteReward", "false"));
 		L2TOPGAMESERVER_API_KEY = ep.getProperty("L2TopGSApiKey", "DEMO");
@@ -361,11 +361,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2TOPGAMESERVER_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -381,15 +381,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2TOPGAMESERVER_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set l2jbrasil global reward variables
 		L2JBRASIL_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("L2JBrasilGlobalVoteReward", "false"));
 		L2JBRASIL_USER_NAME = ep.getProperty("L2JBrasilUserName", "DEMO");
@@ -406,11 +406,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2JBRASIL_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -426,15 +426,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2JBRASIL_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set l2network global reward variables
 		L2NETWORK_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("L2NetworkGlobalVoteReward", "false"));
 		L2NETWORK_API_KEY = ep.getProperty("L2NetworkApiKey", "Hi");
@@ -452,11 +452,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2NETWORK_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -472,15 +472,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2NETWORK_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set hotservers global reward variables
 		HOTSERVERS_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("L2TopServersGlobalVoteReward", "false"));
 		HOTSERVERS_API_KEY = ep.getProperty("L2TopServersApiKey", "Hi");
@@ -499,11 +499,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				HOTSERVERS_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -519,15 +519,15 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				HOTSERVERS_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		// set l2votes global reward variables
 		L2VOTES_GLOBAL_REWARD = Boolean.parseBoolean(ep.getProperty("L2VotesGlobalVoteReward", "false"));
 		L2VOTES_API_KEY = ep.getProperty("L2VotesApiKey", "Hi");
@@ -544,11 +544,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2VOTES_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -564,11 +564,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-				Long.parseLong(parts[1].split("-")[0]),
-				Long.parseLong(parts[1].split("-")[1]),
-				Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2VOTES_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -589,11 +589,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-					Long.parseLong(parts[1].split("-")[0]),
-					Long.parseLong(parts[1].split("-")[1]),
-					Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2RANKZONE_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -609,11 +609,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-					Long.parseLong(parts[1].split("-")[0]),
-					Long.parseLong(parts[1].split("-")[1]),
-					Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				L2RANKZONE_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -635,11 +635,11 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-					 Long.parseLong(parts[1].split("-")[0]),
-					 Long.parseLong(parts[1].split("-")[1]),
-					 Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				TOP4TEAMBR_GLOBAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
@@ -655,18 +655,18 @@ public class Configurations
 				List<Long[]> temp = new ArrayList<>();
 				// Min-Max-Chance
 				temp.add(new Long[]
-				{
-					 Long.parseLong(parts[1].split("-")[0]),
-					 Long.parseLong(parts[1].split("-")[1]),
-					 Long.parseLong(parts[1].split("-")[2]),
-				});
+					   {
+							 Long.parseLong(parts[1].split("-")[0]),
+							 Long.parseLong(parts[1].split("-")[1]),
+							 Long.parseLong(parts[1].split("-")[2]),
+					   });
 				TOP4TEAMBR_INDIVIDUAL_REWARDS.put(Integer.parseInt(parts[0]), temp);
 			}
 		}
-
+		
 		_log.info(Configurations.class.getSimpleName() + ": loaded.");
 	}
-
+	
 	/**
 	 * try to load itopz.properties
 	 *
@@ -678,11 +678,12 @@ public class Configurations
 		try (InputStream is = new FileInputStream(new File(file)))
 		{
 			result.load(is);
-		} catch (final IOException e)
+		}
+		catch (final IOException e)
 		{
 			_log.warn(Configurations.class.getSimpleName() + ": Error loading " + file + " config.");
 		}
-
+		
 		return result;
 	}
 }

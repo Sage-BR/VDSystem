@@ -53,24 +53,24 @@ import java.util.stream.Collectors;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public abstract class IResponse
 {
 	private static final Logs _log = new Logs(IResponse.class.getSimpleName());
-
+	
 	private final String _url;
-
+	
 	public IResponse(final String url)
 	{
 		_url = url;
 	}
-
+	
 	public abstract void onFetch(final String TOPSITE, final int responseCode, final Json response);
-
+	
 	public abstract String replaceURL(final String retailURL);
-
+	
 	/**
 	 * Return connection
 	 *

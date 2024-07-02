@@ -57,34 +57,34 @@ import java.util.Locale;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class Utilities
 {
 	public static final String CREATE_DELIVERY_TABLE = "CREATE TABLE `user_item_delivery` (" +
-		"  `id` int NOT NULL AUTO_INCREMENT," +
-		"  `item_id` int NOT NULL," +
-		"  `item_count` int NOT NULL," +
-		"  `char_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL," +
-		"  `status` int NOT NULL DEFAULT 0," +
-		"  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL," +
-		" PRIMARY KEY (`id`) USING BTREE" +
-		") ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;";
+		   "  `id` int NOT NULL AUTO_INCREMENT," +
+		   "  `item_id` int NOT NULL," +
+		   "  `item_count` int NOT NULL," +
+		   "  `char_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL," +
+		   "  `status` int NOT NULL DEFAULT 0," +
+		   "  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL," +
+		   " PRIMARY KEY (`id`) USING BTREE" +
+		   ") ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;";
 	public static final String CREATE_INDIVIDUAL_TABLE = "CREATE TABLE vds_individual (" +
-		"  `id` int(11) NOT NULL AUTO_INCREMENT," +
-		"  `topsite` enum('HOPZONE','ITOPZ','HOPZONENET','L2NETWORK','L2JBRASIL','L2TOPGAMESERVER','L2VOTES','HOTSERVERS','L2RANKZONE','TOP4TEAMBR') NOT NULL," +
-		"  `var` varchar(255) NOT NULL," +
-		"  `value` bigint(20) NOT NULL," +
-		"  `ip` varchar(65) NOT NULL," +
-		" PRIMARY KEY (id)" +
-		") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+		   "  `id` int(11) NOT NULL AUTO_INCREMENT," +
+		   "  `topsite` enum('HOPZONE','ITOPZ','HOPZONENET','L2NETWORK','L2JBRASIL','L2TOPGAMESERVER','L2VOTES','HOTSERVERS','L2RANKZONE','TOP4TEAMBR') NOT NULL," +
+		   "  `var` varchar(255) NOT NULL," +
+		   "  `value` bigint(20) NOT NULL," +
+		   "  `ip` varchar(65) NOT NULL," +
+		   " PRIMARY KEY (id)" +
+		   ") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 	public static final String CREATE_GLOBAL_TABLE = "CREATE TABLE vds_global (" +
-		"  `topsite` enum('HOPZONE','ITOPZ','HOPZONENET','L2NETWORK','L2JBRASIL','L2TOPGAMESERVER','L2VOTES','HOTSERVERS','L2RANKZONE','TOP4TEAMBR') NOT NULL," +
-		"  `var` varchar(255) NOT NULL," +
-		"  `value` bigint(20) NOT NULL," +
-		" PRIMARY KEY (topsite)" +
-		") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;";
+		   "  `topsite` enum('HOPZONE','ITOPZ','HOPZONENET','L2NETWORK','L2JBRASIL','L2TOPGAMESERVER','L2VOTES','HOTSERVERS','L2RANKZONE','TOP4TEAMBR') NOT NULL," +
+		   "  `var` varchar(255) NOT NULL," +
+		   "  `value` bigint(20) NOT NULL," +
+		   " PRIMARY KEY (topsite)" +
+		   ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;";
 	public static final String DELETE_DELIVERY_TABLE = "DROP TABLE IF EXISTS `user_item_delivery`;";
 	private static final String DELETE_INDIVIDUAL_TABLE = "DROP TABLE IF EXISTS vds_individual;";
 	private static final String DELETE_GLOBAL_TABLE = "DROP TABLE IF EXISTS vds_global;";
@@ -93,7 +93,7 @@ public class Utilities
 	private static final String INDIVIDUAL_IP_SELECT = "SELECT topsite,var,value,ip FROM vds_individual WHERE topsite=? AND var=? AND ip=? AND value > (UNIX_TIMESTAMP() * 1000);";
 	private static final String GLOBAL_VAR_SELECT = "SELECT value FROM vds_global WHERE topsite=? AND var=?";
 	private static final String GLOBAL_VAR_REPLACE = "INSERT INTO vds_global (topsite,var,value) VALUES (?,?,?) ON DUPLICATE KEY UPDATE value=VALUES(value)";
-
+	
 	/**
 	 * announce to all players
 	 *
@@ -103,7 +103,7 @@ public class Utilities
 	{
 		Broadcast.toAllOnlinePlayers("[" + topsite + "]" + message, true);
 	}
-
+	
 	/**
 	 * open new url on browser
 	 *
@@ -112,7 +112,7 @@ public class Utilities
 	public static void openUrl(String URL)
 	{
 		final Desktop desktop = Desktop.getDesktop();
-
+		
 		try
 		{
 			desktop.browse(new URI(URL));
@@ -122,14 +122,14 @@ public class Utilities
 			error.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Delete Delivery Table
 	 */
 	public static void deleteTable(final String QUERY, final String TABLE)
 	{
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(QUERY))
+			PreparedStatement statement = con.prepareStatement(QUERY))
 		{
 			statement.execute();
 		}
@@ -137,17 +137,17 @@ public class Utilities
 		{
 			Gui.getInstance().ConsoleWrite("Delete " + TABLE + " Table Failed: " + e.getMessage());
 		}
-
+		
 		Gui.getInstance().ConsoleWrite("Delete " + TABLE + " Table successfully!");
 	}
-
+	
 	/**
 	 * Create Delivery Table
 	 */
 	public static void createTable(final String QUERY, final String TABLE)
 	{
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(QUERY))
+			PreparedStatement statement = con.prepareStatement(QUERY))
 		{
 			statement.execute();
 		}
@@ -155,22 +155,22 @@ public class Utilities
 		{
 			Gui.getInstance().ConsoleWrite("Installed " + TABLE + " Table Failed: " + e.getMessage());
 		}
-
+		
 		Gui.getInstance().ConsoleWrite("Installed " + TABLE + " Table successfully!");
 	}
-
+	
 	/**
 	 * create individual variable in database
 	 *
 	 * @param topsite string
 	 * @param var     string
 	 * @param value   long
-     * @param IP      string
+	 * @param IP      string
 	 */
 	public static void saveIndividualVar(final String topsite, final String var, final long value, final String IP)
 	{
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(INDIVIDUAL_INSERT))
+			PreparedStatement statement = con.prepareStatement(INDIVIDUAL_INSERT))
 		{
 			statement.setString(1, topsite);
 			statement.setString(2, var);
@@ -184,7 +184,7 @@ public class Utilities
 			if (error != null)
 			{
 				Gui.getInstance().ConsoleWrite("could not insert char var: " + error);
-
+				
 				if (error.contains("doesn't exist") && error.contains("vds_individual"))
 				{
 					deleteTable(DELETE_INDIVIDUAL_TABLE, "vds_individual");
@@ -193,7 +193,7 @@ public class Utilities
 			}
 		}
 	}
-
+	
 	/**
 	 * select individual ip from database
 	 *
@@ -206,7 +206,7 @@ public class Utilities
 	{
 		boolean found = false;
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(INDIVIDUAL_IP_SELECT))
+			PreparedStatement statement = con.prepareStatement(INDIVIDUAL_IP_SELECT))
 		{
 			statement.setString(1, topsite);
 			statement.setString(2, var);
@@ -226,7 +226,7 @@ public class Utilities
 			if (error != null)
 			{
 				Gui.getInstance().ConsoleWrite("could not select char var: " + error);
-
+				
 				if ((error.contains("doesn't exist") && error.contains("vds_individual")) || error.contains("Unknown column 'ip'"))
 				{
 					deleteTable(DELETE_INDIVIDUAL_TABLE, "vds_individual");
@@ -236,7 +236,7 @@ public class Utilities
 		}
 		return found;
 	}
-
+	
 	/**
 	 * select individual variable from database
 	 *
@@ -249,7 +249,7 @@ public class Utilities
 	{
 		long value = -1;
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(INDIVIDUAL_VAR_SELECT))
+			PreparedStatement statement = con.prepareStatement(INDIVIDUAL_VAR_SELECT))
 		{
 			statement.setString(1, topsite);
 			statement.setString(2, var);
@@ -269,7 +269,7 @@ public class Utilities
 			if (error != null)
 			{
 				Gui.getInstance().ConsoleWrite("could not select char var: " + error);
-
+				
 				if (error.contains("doesn't exist") && error.contains("vds_individual"))
 				{
 					deleteTable(DELETE_INDIVIDUAL_TABLE, "vds_individual");
@@ -279,7 +279,7 @@ public class Utilities
 		}
 		return value;
 	}
-
+	
 	/**
 	 * save global variable
 	 *
@@ -290,7 +290,7 @@ public class Utilities
 	public static void saveGlobalVar(final String topsite, final String var, final int value)
 	{
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(GLOBAL_VAR_REPLACE))
+			PreparedStatement statement = con.prepareStatement(GLOBAL_VAR_REPLACE))
 		{
 			statement.setString(1, topsite);
 			statement.setString(2, var);
@@ -303,7 +303,7 @@ public class Utilities
 			if (error != null)
 			{
 				Gui.getInstance().ConsoleWrite("could not insert global variable:" + error);
-
+				
 				if (error.contains("doesn't exist") && error.contains("vds_global"))
 				{
 					deleteTable(DELETE_GLOBAL_TABLE, "vds_global");
@@ -312,7 +312,7 @@ public class Utilities
 			}
 		}
 	}
-
+	
 	/**
 	 * select global variable
 	 *
@@ -324,7 +324,7 @@ public class Utilities
 	{
 		int result = -1;
 		try (Connection con = DatabaseFactory.getConnection();
-		     PreparedStatement statement = con.prepareStatement(GLOBAL_VAR_SELECT))
+			PreparedStatement statement = con.prepareStatement(GLOBAL_VAR_SELECT))
 		{
 			statement.setString(1, topsite);
 			statement.setString(2, var);
@@ -340,7 +340,7 @@ public class Utilities
 			if (error != null)
 			{
 				Gui.getInstance().ConsoleWrite("could not load global variable:" + error);
-
+				
 				if (error.contains("doesn't exist") && error.contains("vds_global"))
 				{
 					deleteTable(DELETE_GLOBAL_TABLE, "vds_global");
@@ -350,7 +350,7 @@ public class Utilities
 		}
 		return result;
 	}
-
+	
 	/**
 	 * Return date time thanks Rationale for pm/am fix
 	 *
@@ -361,7 +361,7 @@ public class Utilities
 	{
 		return new SimpleDateFormat("hh:mm:ss a", Locale.ENGLISH).format(new Date(millisecond));
 	}
-
+	
 	/**
 	 * Check if the address given is local
 	 *
@@ -375,7 +375,7 @@ public class Utilities
 		try
 		{
 			InetAddress iAddr = InetAddress.getByName(address);
-			return iAddr.isLoopbackAddress() || iAddr.isSiteLocalAddress()|| iAddr.isLinkLocalAddress() || iAddr.isAnyLocalAddress();
+			return iAddr.isLoopbackAddress() || iAddr.isSiteLocalAddress() || iAddr.isLinkLocalAddress() || iAddr.isAnyLocalAddress();
 		}
 		catch (UnknownHostException e)
 		{
@@ -384,7 +384,7 @@ public class Utilities
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Convert string datetime to long milliseconds
 	 *
@@ -408,7 +408,7 @@ public class Utilities
 		}
 		return -3;
 	}
-
+	
 	/**
 	 * get external ip for vote debugging
 	 *

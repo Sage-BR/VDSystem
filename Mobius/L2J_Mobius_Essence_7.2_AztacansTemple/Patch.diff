@@ -32,7 +32,7 @@ index d82587c..7512d43 100644
 +	<classpathentry kind="lib" path="dist/libs/VDSystem.jar"/>
 +	<classpathentry including="**/*.java" kind="src" path="dist/game/data/scripts"/>
 +	<classpathentry kind="src" path="java"/>
-+	<classpathentry kind="lib" path="/L2J_Mobius_2.5_Underground/dist/libs/VDSystem.jar"/>
++	<classpathentry kind="lib" path="/L2J_Mobius_Essence_7.2_AztacansTemple/dist/libs/VDSystem.jar"/>
 +	<classpathentry kind="output" path="bin"/>
 +</classpath>
 

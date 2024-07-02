@@ -40,7 +40,7 @@ import java.util.Arrays;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public enum Url
@@ -85,10 +85,10 @@ public enum Url
 	DENART_DESIGNS_VOTE_PANEL("https://shop.denart-designs.com/product/l2off-l2java-vote-panel-v2/"),
 	DENART_DESIGNS_REFERRAL_PANEL("https://shop.denart-designs.com/product/referral-panel/"),
 	GITHUB_URL("https://github.com/nightw0lv/VDSystem");
-
-	private final String _text;
+	
 	private static final Url[] _urls = values();
-
+	private final String _text;
+	
 	/**
 	 * @param text String
 	 */
@@ -96,18 +96,7 @@ public enum Url
 	{
 		_text = text;
 	}
-
-	/**
-	 * (non-Javadoc)
-	 *
-	 * @see Enum#toString()
-	 */
-	@Override
-	public String toString()
-	{
-		return _text;
-	}
-
+	
 	/**
 	 * returns enum from string
 	 *
@@ -117,5 +106,16 @@ public enum Url
 	public static Url from(String TOPSITE)
 	{
 		return Arrays.stream(_urls).filter(s -> s.name().equalsIgnoreCase(TOPSITE)).findFirst().orElse(HOPZONE_URL);
+	}
+	
+	/**
+	 * (non-Javadoc)
+	 *
+	 * @see Enum#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		return _text;
 	}
 }

@@ -44,19 +44,14 @@ import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class VDSystem
 {
 	// logger
 	private static final Logs _log = new Logs(VDSystem.class.getSimpleName());
-
-	public enum VoteType
-	{
-		GLOBAL, INDIVIDUAL;
-	}
-
+	
 	/**
 	 * Constructor
 	 */
@@ -64,7 +59,12 @@ public class VDSystem
 	{
 		onLoad();
 	}
-
+	
+	public static VDSystem getInstance()
+	{
+		return SingletonHolder._instance;
+	}
+	
 	/**
 	 * Vod function on load
 	 */
@@ -75,25 +75,26 @@ public class VDSystem
 		{
 			// start donation manager
 			VDSThreadPool.scheduleAtFixedRate(new ItemDeliveryManager(), 100, 5000);
-
+			
 			// initiate Donation reward
 			_log.info(ItemDeliveryManager.class.getSimpleName() + ": started.");
 		}
-
+		
 		// register individual reward command
 		VoicedCommandHandler.getInstance().registerHandler(new VoteCMD());
-
+		
 		// load global system rewards
 		Global.getInstance();
-
+		
 		_log.info(VDSystem.class.getSimpleName() + ": System initialized.");
 	}
-
-	public static VDSystem getInstance()
+	
+	public enum VoteType
 	{
-		return SingletonHolder._instance;
+		GLOBAL,
+		INDIVIDUAL;
 	}
-
+	
 	private static class SingletonHolder
 	{
 		protected static final VDSystem _instance = new VDSystem();

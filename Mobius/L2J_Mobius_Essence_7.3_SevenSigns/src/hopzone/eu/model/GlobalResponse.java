@@ -42,14 +42,14 @@ import hopzone.eu.util.Json;
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
+ * <p>
  * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class GlobalResponse extends IResponse
 {
 	// private variables
 	private static int _responseCode, _serverVotes, _serverRank, _serverNeededVotes, _serverNextRank;
-
+	
 	/**
 	 * constructor
 	 *
@@ -59,7 +59,18 @@ public class GlobalResponse extends IResponse
 	{
 		super(url);
 	}
-
+	
+	/**
+	 * Return response
+	 *
+	 * @param url string
+	 * @return IndividualResponse object
+	 */
+	public static GlobalResponse OPEN(final String url)
+	{
+		return new GlobalResponse(url);
+	}
+	
 	/**
 	 * override onFetch
 	 *
@@ -77,7 +88,7 @@ public class GlobalResponse extends IResponse
 		if (Configurations.DEBUG)
 			Gui.getInstance().ConsoleWrite("TOPSITE:" + TOPSITE + " VOTES:" + _serverVotes + " RESPONSE:" + _responseCode);
 	}
-
+	
 	/**
 	 * Replace Url
 	 *
@@ -89,7 +100,7 @@ public class GlobalResponse extends IResponse
 	{
 		return retailURL;
 	}
-
+	
 	/**
 	 * Connect
 	 *
@@ -100,7 +111,7 @@ public class GlobalResponse extends IResponse
 	{
 		return (GlobalResponse) super.connect(TOPSITE, TYPE);
 	}
-
+	
 	/**
 	 * Returns response code
 	 *
@@ -110,7 +121,7 @@ public class GlobalResponse extends IResponse
 	{
 		return _responseCode;
 	}
-
+	
 	/**
 	 * Returns server votes
 	 *
@@ -120,7 +131,7 @@ public class GlobalResponse extends IResponse
 	{
 		return _serverVotes;
 	}
-
+	
 	/**
 	 * Returns server rank
 	 *
@@ -130,7 +141,7 @@ public class GlobalResponse extends IResponse
 	{
 		return _serverRank;
 	}
-
+	
 	/**
 	 * Returns server needed votes
 	 *
@@ -140,7 +151,7 @@ public class GlobalResponse extends IResponse
 	{
 		return _serverNeededVotes;
 	}
-
+	
 	/**
 	 * Returns server next rank
 	 *
@@ -149,16 +160,5 @@ public class GlobalResponse extends IResponse
 	public int getServerNextRank()
 	{
 		return _serverNextRank;
-	}
-
-	/**
-	 * Return response
-	 *
-	 * @param url string
-	 * @return IndividualResponse object
-	 */
-	public static GlobalResponse OPEN(final String url)
-	{
-		return new GlobalResponse(url);
 	}
 }
