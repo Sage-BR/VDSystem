@@ -9,7 +9,7 @@ Implementation of vote global and individual system with item delivery manager.
 - RusAcis Files
 
 **Build**
-- JDK 1.8
+- JDK 17
 - File: ```VDSystem.ext.jar```
 - Version: 1.6
 
