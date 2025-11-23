@@ -6,4 +6,4 @@ Topic: https://4teambr.com/index.php?topic=2.0
 ### Keep project alive by Donating here: [Paypal](https://url.4teambr.com/paypal)
 #
 ## Tutorial:
-### https://www.youtube.com/watch?v=hxAS6rKzG6I
+### [https://www.youtube.com/watch?v=hxAS6rKzG6I](https://youtu.be/wRn4-GJQmaQ)
