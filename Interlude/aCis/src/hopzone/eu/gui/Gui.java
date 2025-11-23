@@ -22,10 +22,10 @@
 package hopzone.eu.gui;
 
 import hopzone.eu.global.Global;
-import hopzone.eu.util.VDSThreadPool;
-import hopzone.eu.Configurations;
 import hopzone.eu.util.Url;
 import hopzone.eu.util.Utilities;
+import hopzone.eu.util.VDSThreadPool;
+import hopzone.eu.Configurations;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,28 +41,33 @@ import java.net.URL;
  * Script website: https://itopz.com/
  * Partner website: https://hopzone.eu/
  * Script version: 1.8
- * Pack Support: Mobius 09.2 ReturnOfTheQueenAnt
+ * Pack Support: Tag 750-23-gd45011c Commit d45011c https://gitlab.com/TheDnR/l2j-lisvus/-/commit/d45011c90d4a955d9a468024e57364bcd07fea59
  * <p>
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public class Gui extends JFrame
 {
+	/**
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = 7507031628376127743L;
+
 	// console
 	private JTextArea console;
 
 	// menu
-	private JMenu menuServer, menuDonate, menuAbout;
+	private JMenu menuServer, menuAbout;
 
 	// box
 	private Box box;
 
 	// label
 	private JLabel HOPZONE, ITOPZ, HOPZONENET, L2TOPGAMESERVER, L2NETWORK, TOPL2JBRASIL, L2VOTES, HOTSERVERS, L2RANKZONE, TOP4TEAMBR;
-
+	
 	/**
 	 * Constructor load gui
 	 */
@@ -109,8 +114,6 @@ public class Gui extends JFrame
 		// set menu item
 		menuServer = new JMenu("Server");
 		menuBar.add(menuServer);
-		menuDonate = new JMenu("Donates");
-		menuBar.add(menuDonate);
 		menuAbout = new JMenu("About");
 		menuBar.add(menuAbout);
 		menuBar.setBackground(Color.black);
@@ -207,22 +210,28 @@ public class Gui extends JFrame
 		setTitle("VDSystem server console.");
 		setSize(Configurations.VDS_CONSOLE_WIDTH, Configurations.VDS_CONSOLE_HEIGHT);
 	}
-	
+
 	/**
 	 * update statistics
 	 *
-	 * @param serverVotes int
+	 * @param serverVotes       int
 	 */
 	public void UpdateHopzoneStats(int serverVotes)
 	{
 		if (!Configurations.VDS_CONSOLE_ENABLE)
 			return;
-		
-		HOPZONE.setText("HOPZONE.EU Server Votes: " + serverVotes + "votes.");
+
+		HOPZONE.setText("HOPZONE.EU Server Votes: " + serverVotes + " votes.");
 		if (serverVotes < 0)
+		{
 			HOPZONE.setForeground(Color.RED);
+			HOPZONE.setToolTipText("<html>Check for errors</html>");
+		}
 		else
+		{
 			HOPZONE.setForeground(Color.GREEN);
+			HOPZONE.setToolTipText("<html>Live mode</html>");
+		}
 		if (Configurations.HOPZONE_EU_VOTE_CHECK_DELAY > 60)
 			HOPZONE.setToolTipText("<html>Statistics up date every " + Configurations.HOPZONE_EU_VOTE_CHECK_DELAY / 60 + " minutes</html>");
 		else
@@ -282,7 +291,7 @@ public class Gui extends JFrame
 		if (!Configurations.VDS_CONSOLE_ENABLE)
 			return;
 
-		HOPZONENET.setText("HOPZONE Server Votes: " + serverVotes + "votes.");
+		HOPZONENET.setText("HOPZONENET Server Votes: " + serverVotes + " votes.");
 		if (serverVotes < 0)
 			HOPZONENET.setForeground(Color.RED);
 		else
@@ -455,17 +464,23 @@ public class Gui extends JFrame
 		debug.setToolTipText("<html>Show debug messages on console</html>");
 		menuServer.add(debug);
 
+		// run Hopzone global reward
+		JMenuItem run_hopzone_global_reward = new JMenuItem("Run Hopzone.eu Global");
+		run_hopzone_global_reward.addActionListener(al -> Global.getInstance().execute("HOPZONE"));
+		run_hopzone_global_reward.setToolTipText("<html>Run global reward</html>");
+		menuServer.add(run_hopzone_global_reward);
+
 		// run itopz global reward
 		JMenuItem run_itopz_global_reward = new JMenuItem("Run iTopZ Global");
 		run_itopz_global_reward.addActionListener(al -> Global.getInstance().execute("ITOPZ"));
 		run_itopz_global_reward.setToolTipText("<html>Run global reward</html>");
 		menuServer.add(run_itopz_global_reward);
 
-		// run Hopzone global reward
-		JMenuItem run_hopzone_global_reward = new JMenuItem("Run Hopzone Global");
-		run_hopzone_global_reward.addActionListener(al -> Global.getInstance().execute("HOPZONE"));
-		run_hopzone_global_reward.setToolTipText("<html>Run global reward</html>");
-		menuServer.add(run_hopzone_global_reward);
+		// run Hopzonenet global reward
+		JMenuItem run_hopzonenet_global_reward = new JMenuItem("Run Hopzone.net Global");
+		run_hopzonenet_global_reward.addActionListener(al -> Global.getInstance().execute("HOPZONENET"));
+		run_hopzonenet_global_reward.setToolTipText("<html>Run global reward</html>");
+		menuServer.add(run_hopzonenet_global_reward);
 
 		// run L2TopGameServer global reward
 		JMenuItem run_l2topgameserver_global_reward = new JMenuItem("Run L2TopGameServer Global");
@@ -511,31 +526,9 @@ public class Gui extends JFrame
 
 		// server info
 		JMenuItem server_info = new JMenuItem("Server info");
-		server_info.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_SERVER_URL.toString()));
-		server_info.setToolTipText("<html>Visit server info at iTopZ</html>");
+		server_info.addActionListener(al -> Utilities.openUrl(Url.FORTEAMSITE.toString()));
+		server_info.setToolTipText("<html>Visit server info at 4TeamBR</html>");
 		menuServer.add(server_info);
-
-		// donate settings
-		JMenuItem donate_settings = new JMenuItem("Donate Settings");
-		donate_settings.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_URL.toString() + "donate_settings/" + Configurations.ITOPZ_SERVER_ID));
-		donate_settings.setToolTipText("<html>Visit donate settings at iTopZ</html>");
-		menuDonate.add(donate_settings);
-
-		// donate payments
-		JMenuItem donate_payments = new JMenuItem("Donate Payments");
-		donate_payments.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_URL.toString() + "donate_payments/" + Configurations.ITOPZ_SERVER_ID));
-		donate_payments.setToolTipText("<html>Visit donate payments at iTopZ</html>");
-		menuDonate.add(donate_payments);
-
-		// donate announce
-		JMenuItem donate_inform = new JMenuItem("Donate Announce link");
-		donate_inform.addActionListener(al ->
-		{
-			Utilities.announce("iTopZ", "Donate for our server at " + Url.ITOPZ_URL.toString() + "donate/" + Configurations.ITOPZ_SERVER_ID);
-			ConsoleWrite("Announce send to server");
-		});
-		donate_inform.setToolTipText("<html>Inform all players about donate link</html>");
-		menuDonate.add(donate_inform);
 
 		// bug report
 		JMenuItem report = new JMenuItem("Bug report");
@@ -544,9 +537,9 @@ public class Gui extends JFrame
 		menuAbout.add(report);
 
 		// about itopz
-		JMenuItem about = new JMenuItem("iTopZ");
-		about.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_SERVER_URL.toString()));
-		about.setToolTipText("<html>Visit iTopZ</html>");
+		JMenuItem about = new JMenuItem("4TeamBR");
+		about.addActionListener(al -> Utilities.openUrl(Url.FORTEAMSITE.toString()));
+		about.setToolTipText("<html>Visit 4TeamBR</html>");
 		menuAbout.add(about);
 
 		// about itopz discord
@@ -554,30 +547,6 @@ public class Gui extends JFrame
 		discord.addActionListener(al -> Utilities.openUrl(Url.DISCORD.toString()));
 		discord.setToolTipText("<html>Visit Discord</html>");
 		menuAbout.add(discord);
-
-		// about denart designs
-		JMenuItem denart_designs = new JMenuItem("GFX Designer");
-		denart_designs.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS.toString()));
-		denart_designs.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs);
-		
-		// shop donate denart designs
-		JMenuItem denart_designs_donate = new JMenuItem("Donate Panel v4");
-		denart_designs_donate.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS_DONATE_PANEL.toString()));
-		denart_designs_donate.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs_donate);
-		
-		// shop vote denart designs
-		JMenuItem denart_designs_vote = new JMenuItem("Vote Panel");
-		denart_designs_vote.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS_VOTE_PANEL.toString()));
-		denart_designs_vote.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs_vote);
-		
-		// shop referral denart designs
-		JMenuItem denart_designs_referral = new JMenuItem("Referral Panel");
-		denart_designs_referral.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS_REFERRAL_PANEL.toString()));
-		denart_designs_referral.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs_referral);
 	}
 
 	/**
@@ -585,10 +554,12 @@ public class Gui extends JFrame
 	 */
 	public void box()
 	{
-		// ITOPZ
-		box.add(ITOPZ);
 		// HOPZONE
 		box.add(HOPZONE);
+		// ITOPZ
+		box.add(ITOPZ);
+		// HOPZONENET
+		box.add(HOPZONENET);
 		// L2TOPGAMESERVER
 		box.add(L2TOPGAMESERVER);
 		// L2NETWORK
@@ -624,7 +595,7 @@ public class Gui extends JFrame
 	{
 		return SingletonHolder._instance;
 	}
-	
+
 	private static class SingletonHolder
 	{
 		protected static final Gui _instance = new Gui();

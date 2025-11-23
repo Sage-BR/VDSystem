@@ -17,7 +17,7 @@ index 6cf1792..463a7eb 100644
  import org.mmocore.network.SelectorConfig;
  import org.mmocore.network.SelectorThread;
  
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
 +
  public class GameServer
  {

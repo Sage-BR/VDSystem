@@ -18,7 +18,7 @@ index 8d5af9c..df63a5a 100644
 
  import gnu.trove.set.TIntSet;
  import gnu.trove.set.hash.TIntHashSet;
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
 
  import java.awt.*;
  import java.io.File;

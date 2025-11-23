@@ -23,7 +23,7 @@ index 362c1fe..f4bc287 100644
  import Elemental.datatables.OfflineBuffersTable;
  //import Elemental.datatables.ServerRanking;
  //import Elemental.managers.AutoRaidEventManager;
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
 
  public class GameServer
  {

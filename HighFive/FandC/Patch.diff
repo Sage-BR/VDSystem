@@ -17,7 +17,7 @@ index ba57bba..c7cdb4e 100644
  import fandc.streaming.TwitchParser;
  import fandc.tournament.TournamentHolder;
  import fandc.votingengine.VotingRewardAPI;
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
  import kara.twitch.TwitchManager;
  import kara.vote.VoteManager;
  import l2f.commons.listener.Listener;

@@ -41,7 +41,7 @@ import java.util.Arrays;
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public enum Url
 {
@@ -80,11 +80,8 @@ public enum Url
 	TOP4TEAMBR_GLOBAL_URL("https://top.4teambr.com/api.php?name=" + Configurations.TOP4TEAMBR_USER_NAME),
 	TOP4TEAMBR_URL("https://top.4teambr.com/"),
 	DISCORD("https://discord.gg/Bf26EkYk"),
-	DENART_DESIGNS("https://www.denart-designs.com"),
-	DENART_DESIGNS_DONATE_PANEL("https://shop.denart-designs.com/product/auto-donate-panel-v4/"),
-	DENART_DESIGNS_VOTE_PANEL("https://shop.denart-designs.com/product/l2off-l2java-vote-panel-v2/"),
-	DENART_DESIGNS_REFERRAL_PANEL("https://shop.denart-designs.com/product/referral-panel/"),
-	GITHUB_URL("https://github.com/nightw0lv/VDSystem");
+	FORTEAMSITE("https://forum.4teambr.com/index.php"),
+	GITHUB_URL("https://github.com/Sage-BR/VDSystem");
 
 	private final String _text;
 	private static final Url[] _urls = values();

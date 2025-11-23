@@ -1,0 +1,15 @@
+
+diff --git java/org/l2jmobius/gameserver/GameServer.java java/org/l2jmobius/gameserver/GameServer.java
+index a153400..5259a1c 100644
+--- java/org/l2jmobius/gameserver/GameServer.java
++++ java/org/l2jmobius/gameserver/GameServer.java
+@@ -157,2 +157,4 @@
+
++import hopzone.eu.VDSystemManager;
++
+ public class GameServer
+@@ -415,2 +417,4 @@
+
++		VDSystemManager.getInstance();
++
+ 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());

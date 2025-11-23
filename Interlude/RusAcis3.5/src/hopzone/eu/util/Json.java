@@ -21,53 +21,61 @@
  */
 package hopzone.eu.util;
 
-import hopzone.eu.vote.VDSystem;
 import hopzone.eu.Configurations;
+import hopzone.eu.gui.Gui;
+import hopzone.eu.vote.VDSystem;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author Nightwolf
- * iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale
- * Base structure credits goes on Rationale Discord: Rationale#7773
- * <p>
- * VDS Stands for: Vote Donation System
- * Script website: https://itopz.com/
- * Partner website: https://hopzone.eu/
- * Script version: 1.8
- * Pack Support: aCis 401
- * <p>
- * Freemium Donate Panel V4: https://www.denart-designs.com/
- * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
- * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
+ * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale Base structure credits goes on Rationale Discord:
+ *         Rationale#7773
+ *         <p>
+ *         VDS Stands for: Vote Donation System Script website:
+ *         https://itopz.com/ Partner website: https://hopzone.eu/ Script
+ *         version: 1.8 Pack Support: Tag 750-23-gd45011c Commit d45011c
+ *         https://gitlab.com/TheDnR/l2j-lisvus/-/commit/d45011c90d4a955d9a468024e57364bcd07fea59
+ *         <p>
+ *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download:
+ *         https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy:
+ *         https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ *         Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public class Json
 {
 	private static final Logs _log = new Logs(Json.class.getSimpleName());
+
 	private final Map<String, String> data = new HashMap<>();
+
 	private int i;
+
 	private String[] split;
 
 	/**
 	 * set body of json array
 	 *
-	 * @param text    string
-	 * @param TOPSITE string
-	 * @param TYPE    enum
+	 * @param text
+	 *            string
+	 * @param TOPSITE
+	 *            string
+	 * @param TYPE
+	 *            enum
 	 */
 	public Json(String text, String TOPSITE, VDSystem.VoteType TYPE)
 	{
 		if (Configurations.DEBUG)
-			_log.info("------------ Parsing Json " + TOPSITE + " TYPE: " + TYPE);
+			_log.info("------------ Parsing Json " + TOPSITE + " TYPE: "
+				+ TYPE);
 		i = 0;
 		split = null;
 		if (text != null)
 		{
-			for (String s : text.replaceAll("[{}\"]", "").replace("result:", "").split(","))
+			for (String s : text.replaceAll("[{}\"]",
+											"").replace("result:",
+														"").split(","))
 			{
 				if (s == null)
 					continue;
@@ -89,8 +97,10 @@ public class Json
 	/**
 	 * Set global variables
 	 *
-	 * @param TOPSITE string
-	 * @param s       string
+	 * @param TOPSITE
+	 *            string
+	 * @param s
+	 *            string
 	 */
 	private void setGlobalVars(String TOPSITE, String s)
 	{
@@ -103,9 +113,11 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("total_monthly_votes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1].trim());
 				return;
 			}
 
@@ -113,27 +125,35 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("server_votes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1].trim());
 				if (split[0].contains("server_rank"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_rank", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_rank",
+										split[1].trim());
 				split[0] = split[0].trim();
 				if (split[0].equals("next_rank_votes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_rank_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_rank_votes",
+										split[1].trim());
 				if (split[0].equals("next_rank"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_next_rank", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_next_rank",
+										split[1].trim());
 				return;
 			}
 
-			// when noob hopzone return date time using ":" symbol in json.. instead of milliseconds
+			// when noob hopzone return date time using ":" symbol in json..
+			// instead of milliseconds
 			if (TOPSITE.equals("HOPZONENET"))
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("totalvotes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1].trim());
 				return;
 			}
 
@@ -143,9 +163,11 @@ public class Json
 					return;
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("getVotes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1].trim());
 				return;
 			}
 
@@ -158,14 +180,16 @@ public class Json
 				return;
 			}
 
-			// now there is a special place in hell for these guys.
-			// 2023 note they broke again this api, global asks for player id and shit.
+			// now counting votes from nested JSON structure
 			if (TOPSITE.equals("L2JBRASIL"))
 			{
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " DEBUG: " + i);
-				if (s.startsWith("id"))
+					_log.info(TOPSITE + " DEBUG line: " + s);
+
+				// Conta quantos objetos "vote" existem (cada voto do mês)
+				if (s.contains("\"id\"") && s.contains("{"))
 					i++;
+
 				return;
 			}
 
@@ -174,9 +198,11 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("votes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1]);
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1]);
 				return;
 			}
 
@@ -184,47 +210,55 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("server_votes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1].trim());
 			}
-			
+
 			if (TOPSITE.equals("L2RANKZONE"))
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("currentVotes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_votes",
+										split[1].trim());
 			}
-			
+
 			if (TOPSITE.equals("TOP4TEAMBR"))
 			{
-				split = s.split(":");
-				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
-				if (split[0].contains("votes"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_votes", split[1].trim());
-				return;
+			    split = s.split(":");
+			    if (Configurations.DEBUG)
+			        _log.info(TOPSITE + " trimmed line :" + split[0].trim()
+			            + ":" + split[1].trim());
+			    if (split[0].trim().equals("votes")) 
+			        data.putIfAbsent(TOPSITE.toLowerCase() + "_votes",
+			                        split[1].trim());
 			}
-		}
-		catch (IndexOutOfBoundsException ioobe)
+
+		} catch (IndexOutOfBoundsException ioobe)
 		{
 			if (Configurations.DEBUG)
 				_log.error("IOOBE: " + ioobe.getMessage(), ioobe);
-		}
-		catch (Exception e)
+			Gui.getInstance().ConsoleWrite("IOOBE: " + ioobe.getMessage());
+		} catch (Exception e)
 		{
 			if (Configurations.DEBUG)
 				_log.error("Exception: " + e.getMessage(), e);
+			Gui.getInstance().ConsoleWrite("IOOBE: " + e.getMessage());
 		}
 	}
 
 	/**
 	 * set individual variables
 	 *
-	 * @param TOPSITE string
-	 * @param s       string
+	 * @param TOPSITE
+	 *            string
+	 * @param s
+	 *            string
 	 */
 	private void setIndividualVars(String TOPSITE, String s)
 	{
@@ -237,22 +271,31 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				// vote id check
 				if (split[0].contains("status"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim().equals("completed") ? "true" : "false");
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim().equals("completed")
+												? "true"
+												: "false");
 				if (split[0].contains("vote_time"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim());
 				if (split[0].contains("server_time"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim());
 
 				// vote ip check
 				if (split[0].contains("isVoted"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
 				if (split[0].contains("voteTime"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim());
 				if (split[0].contains("serverTime"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim());
 				return;
 			}
 
@@ -260,28 +303,39 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("isVoted"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
 				if (split[0].contains("voteTime"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim());
 				if (split[0].contains("serverTime"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim());
 				return;
 			}
 
-			// when noob hopzone return date time using ":" symbol in json.. instead of milliseconds
+			// when noob hopzone return date time using ":" symbol in json..
+			// instead of milliseconds
 			if (TOPSITE.equals("HOPZONENET"))
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("voted"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
 				if (split[0].contains("voteTime") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 				if (split[0].contains("hopzoneServerTime") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 				return;
 			}
 
@@ -291,15 +345,21 @@ public class Json
 					return;
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
-				//if (split[0].contains("already_voted"))
-				//	data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
+				// if (split[0].contains("already_voted"))
+				// data.putIfAbsent(TOPSITE.toLowerCase() + "_voted",
+				// split[1].trim());
 				if (split[0].contains("vote_time"))
 					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", "true");
 				if (split[0].contains("vote_time") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 				if (split[0].contains("server_time") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 				return;
 			}
 
@@ -312,18 +372,39 @@ public class Json
 				return;
 			}
 
-			// this time they did it.. but still stupid as hopzone
+			// this time they did it.. but still structured JSON
 			if (TOPSITE.equals("L2JBRASIL"))
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
+
+				// Status: "0" = não votou, "1" = votou
 				if (split[0].contains("status"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
-				if (split[0].contains("date") && !s.equals("date:0") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
+
+				// Date: ignora se for "0" ou vazio
+				if (split[0].contains("date") && split.length >= 3)
+				{
+					String dateValue = split[1].trim();
+					if (!dateValue.equals("0") && !dateValue.equals("\"0\""))
+					{
+						data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+											split[1].trim() + ":"
+												+ split[2].trim() + ":"
+												+ split[3].trim());
+					}
+				}
+
+				// Server time
 				if (split[0].contains("server_time") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
+
+				return;
 			}
 
 			// still learning what api key is
@@ -331,9 +412,11 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("status"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
 				return;
 			}
 
@@ -342,89 +425,122 @@ public class Json
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("has_voted"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
 				if (split[0].contains("vote_time") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 				if (split[0].contains("server_time") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 			}
-			
+
 			if (TOPSITE.equals("L2RANKZONE"))
 			{
 				split = s.split(":");
 				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + split[0].trim() + ":" + split[1].trim());
+					_log.info(TOPSITE + " trimmed line :" + split[0].trim()
+						+ ":" + split[1].trim());
 				if (split[0].contains("voted"))
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", split[1].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_voted",
+										split[1].trim());
 				if (split[0].contains("voteTime") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_vote_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 				if (split[0].contains("serverTime") && split.length >= 3)
-					data.putIfAbsent(TOPSITE.toLowerCase() + "_server_time", split[1].trim() + ":" + split[2].trim() + ":" + split[3].trim());
+					data.putIfAbsent(	TOPSITE.toLowerCase() + "_server_time",
+										split[1].trim() + ":" + split[2].trim()
+											+ ":" + split[3].trim());
 			}
-			
+
 			if (TOPSITE.equals("TOP4TEAMBR"))
 			{
-				if (Configurations.DEBUG)
-					_log.info(TOPSITE + " trimmed line :" + s.trim());
-				data.putIfAbsent(TOPSITE.toLowerCase() + "_voted", s.trim());
-				return;
+			    split = s.split(":");
+			    if (Configurations.DEBUG)
+			        _log.info(TOPSITE + " trimmed line :" + split[0].trim()
+			            + ":" + split[1].trim());
+			    if (split[0].trim().equals("voted"))
+			        data.putIfAbsent(TOPSITE.toLowerCase() + "_voted",
+			                        split[1].trim());
+			    if (split[0].trim().equals("vote_date") && split.length >= 3)
+			        data.putIfAbsent(TOPSITE.toLowerCase() + "_vote_date",
+			                        split[1].trim() + ":" + split[2].trim()
+			                            + ":" + split[3].trim());
 			}
-		}
-		catch (IndexOutOfBoundsException ioobe)
+
+		} catch (IndexOutOfBoundsException ioobe)
 		{
 			if (Configurations.DEBUG)
 				_log.error("IOOBE: " + ioobe.getMessage(), ioobe);
-		}
-		catch (Exception e)
+			Gui.getInstance().ConsoleWrite("IOOBE: " + ioobe.getMessage());
+		} catch (Exception e)
 		{
 			if (Configurations.DEBUG)
 				_log.error("Exception: " + e.getMessage(), e);
+			Gui.getInstance().ConsoleWrite("IOOBE: " + e.getMessage());
 		}
 	}
 
 	/**
 	 * return string value from map
 	 *
-	 * @param key String
+	 * @param key
+	 *            String
 	 * @return string
 	 */
 	public String getString(String key)
 	{
-		return data.containsKey(key) ? String.valueOf(data.getOrDefault(key, "-2")) : "NONE";
+		return data.containsKey(key)
+				? String.valueOf(data.getOrDefault(key, "-2"))
+				: "NONE";
 	}
 
 	/**
 	 * return integer value from map
 	 *
-	 * @param key String
+	 * @param key
+	 *            String
 	 * @return int
 	 */
 	public Integer getInteger(String key)
 	{
-		return data.containsKey(key) ? Integer.parseInt(data.getOrDefault(key, "-2")) : -2;
+		return data.containsKey(key)
+				? Integer.parseInt(data.getOrDefault(key, "-2"))
+				: -2;
 	}
 
 	/**
 	 * Return boolean value from map
 	 *
-	 * @param key String
+	 * @param key
+	 *            String
 	 * @return boolean
 	 */
 	public boolean getBoolean(String key)
 	{
-		return data.containsKey(key) ? Boolean.parseBoolean(data.getOrDefault(key, "false")) || data.getOrDefault(key, "false").equals("1") : false;
+		return data.containsKey(key)
+				? Boolean.parseBoolean(data.getOrDefault(key, "false"))
+					|| data.getOrDefault(key, "false").equals("1")
+				: false;
 	}
 
 	/**
 	 * Return long value from map
 	 *
-	 * @param key String
+	 * @param key
+	 *            String
 	 * @return long
 	 */
 	public long getLong(String key)
 	{
-		return data.containsKey(key) ? Long.parseLong(data.getOrDefault(key, "-2")) : -2;
+		return data.containsKey(key)
+				? Long.parseLong(data.getOrDefault(key, "-2"))
+				: -2;
 	}
 }

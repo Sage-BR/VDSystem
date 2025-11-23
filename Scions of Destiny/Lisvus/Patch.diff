@@ -21,7 +21,7 @@ Index: java/net/sf/l2j/gameserver/GameServer.java
  import java.util.logging.LogManager;
  import java.util.logging.Logger;
 
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
  import net.sf.l2j.Config;
  import net.sf.l2j.L2DatabaseFactory;
  import net.sf.l2j.Server;

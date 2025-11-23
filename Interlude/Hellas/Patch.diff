@@ -8,7 +8,7 @@ Index: java/com/l2jhellas/gameserver/GameServer.java
  import Extensions.Vote.VoteRewardHopzone;
  import Extensions.Vote.VoteRewardTopzone;
  import Extensions.fake.roboto.FakePlayerManager;
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
 
  import com.L2JHellasInfo;
  import com.PackRoot;

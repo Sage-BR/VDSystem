@@ -35,13 +35,13 @@ import java.util.Arrays;
  * Script website: https://itopz.com/
  * Partner website: https://hopzone.eu/
  * Script version: 1.8
- * Pack Support: Remorse (l2-scripts) classic 196 pack
+ * Pack Support: Tag 750-23-gd45011c Commit d45011c https://gitlab.com/TheDnR/l2j-lisvus/-/commit/d45011c90d4a955d9a468024e57364bcd07fea59
  * <p>
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public enum Url
 {
@@ -80,11 +80,8 @@ public enum Url
 	TOP4TEAMBR_GLOBAL_URL("https://top.4teambr.com/api.php?name=" + Configurations.TOP4TEAMBR_USER_NAME),
 	TOP4TEAMBR_URL("https://top.4teambr.com/"),
 	DISCORD("https://discord.gg/Bf26EkYk"),
-	DENART_DESIGNS("https://www.denart-designs.com"),
-	DENART_DESIGNS_DONATE_PANEL("https://shop.denart-designs.com/product/auto-donate-panel-v4/"),
-	DENART_DESIGNS_VOTE_PANEL("https://shop.denart-designs.com/product/l2off-l2java-vote-panel-v2/"),
-	DENART_DESIGNS_REFERRAL_PANEL("https://shop.denart-designs.com/product/referral-panel/"),
-	GITHUB_URL("https://github.com/nightw0lv/VDSystem");
+	FORTEAMSITE("https://forum.4teambr.com/index.php"),
+	GITHUB_URL("https://github.com/Sage-BR/VDSystem");
 
 	private final String _text;
 	private static final Url[] _urls = values();

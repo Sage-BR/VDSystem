@@ -40,7 +40,7 @@ import java.util.logging.Logger;
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public class Logs
 {

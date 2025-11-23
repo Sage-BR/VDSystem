@@ -17,7 +17,7 @@ index 32c578f..a1371cf 100644
 
  import gnu.trove.set.TIntSet;
  import gnu.trove.set.hash.TIntHashSet;
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
  import l2s.commons.lang.StatsUtils;
  import l2s.commons.listener.Listener;
  import l2s.commons.listener.ListenerList;

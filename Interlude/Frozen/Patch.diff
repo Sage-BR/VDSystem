@@ -19,7 +19,7 @@ Index: head-src/com/l2jfrozen/gameserver/GameServer.java
  import com.l2jfrozen.util.Util;
  import com.l2jfrozen.util.database.L2DatabaseFactory;
 
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
 +
  public class GameServer
  {

@@ -66,7 +66,7 @@ Implementation of vote global and individual system with item delivery manager.
 - Fully configured
 
 **Installation**
-![https://github.com/nightw0lv/VDSystem/tree/master/Interlude/hellas/VDSystem/Patch.diff](Patch.diff)
+![https://github.com/Sage-BR/VDSystem/tree/master/Interlude/hellas/VDSystem/Patch.diff](Patch.diff)
 
 ```Special thanks to Rationale``` :cry:
 

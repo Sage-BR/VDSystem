@@ -27,7 +27,7 @@ index a60aaad..881ad50 100644
  import net.sf.l2j.util.DeadLockDetector;
  import net.sf.l2j.util.IPv4Filter;
 
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
 +
  public class GameServer
  {

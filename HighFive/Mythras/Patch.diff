@@ -23,7 +23,7 @@ index f7ed94f..b7aab4b 100644
 
  //import Elemental.datatables.CharacterMonthlyRanking;
  import Elemental.datatables.OfflineBuffersTable;
-+import itopz.com.VDSystemManager;
++import hopzone.eu.VDSystemManager;
  //import Elemental.datatables.ServerRanking;
  //import Elemental.managers.AutoRaidEventManager;
 

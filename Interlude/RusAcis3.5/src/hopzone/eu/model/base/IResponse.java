@@ -21,10 +21,12 @@
  */
 package hopzone.eu.model.base;
 
+import hopzone.eu.Configurations;
+import hopzone.eu.gui.Gui;
 import hopzone.eu.util.Json;
 import hopzone.eu.util.Logs;
 import hopzone.eu.vote.VDSystem;
-import hopzone.eu.Configurations;
+import hopzone.eu.vote.VDSystem.VoteType;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -47,20 +49,20 @@ import java.util.stream.Collectors;
  * Script website: https://itopz.com/
  * Partner website: https://hopzone.eu/
  * Script version: 1.8
- * Pack Support: aCis 401
+ * Pack Support: Tag 750-23-gd45011c Commit d45011c https://gitlab.com/TheDnR/l2j-lisvus/-/commit/d45011c90d4a955d9a468024e57364bcd07fea59
  * <p>
  * Freemium Donate Panel V4: https://www.denart-designs.com/
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public abstract class IResponse
 {
 	private static final Logs _log = new Logs(IResponse.class.getSimpleName());
 
 	private final String _url;
-
+	
 	public IResponse(final String url)
 	{
 		_url = url;
@@ -69,11 +71,9 @@ public abstract class IResponse
 	public abstract void onFetch(final String TOPSITE, final int responseCode, final Json response);
 
 	public abstract String replaceURL(final String retailURL);
-
+	
 	/**
 	 * Return connection
-	 * @param TOPSITE 
-	 * @param TYPE 
 	 *
 	 * @return IResponse object
 	 */
@@ -91,24 +91,55 @@ public abstract class IResponse
 			// do fast timeout
 			connection.setConnectTimeout(3000);
 			// another stupid idea to send POST request in order to get an int... presented by:
+			// another stupid idea to send POST request in order to get an int... presented by:
+			// another stupid idea to send POST request in order to get an int... presented by:
 			if (TOPSITE.equals("L2NETWORK"))
 			{
-				String urlParameters = "apiKey=" + Configurations.L2NETWORK_API_KEY + "&type=1&player=";
-				byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-				int postDataLength = postData.length;
-				connection.setRequestMethod("POST");
-				connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-				connection.setDoOutput(true);
-				try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream()))
-				{
-					wr.write(postData);
-					// bypass manually the checks
-					responseCode = 200;
-				}
+			    String urlParameters;
+			    
+			    // TYPE.GLOBAL = votos totais (type=1)
+			    if (TYPE == VoteType.GLOBAL)
+			    {
+			        urlParameters = "apiKey=" + Configurations.L2NETWORK_API_KEY + "&type=1";
+			    }
+			    // TYPE.INDIVIDUAL = check de voto individual (type=2)
+			    else
+			    {
+			        // Extrai o IP do parâmetro da URL após substituição
+			        String fullURL = replaceURL(_url);
+			        String playerIdentifier = "";
+			        
+			        // Se a URL contém "id=", pega o valor depois dele
+			        if (fullURL.contains("id="))
+			        {
+			            String[] parts = fullURL.split("id=");
+			            if (parts.length > 1)
+			            {
+			                playerIdentifier = parts[1].split("&")[0]; // Pega até o próximo &
+			            }
+			        }
+			        
+			        urlParameters = "apiKey=" + Configurations.L2NETWORK_API_KEY + "&type=2&player=" + 
+			                       java.net.URLEncoder.encode(playerIdentifier, StandardCharsets.UTF_8);
+			    }
+			    
+			    byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+			    int postDataLength = postData.length;
+			    connection.setRequestMethod("POST");
+			    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			    connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+			    connection.setDoOutput(true);
+			    
+			    try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream()))
+			    {
+			        wr.write(postData);
+			        // bypass manually the checks
+			        responseCode = 200;
+			    }
 			}
 			else if (TOPSITE.equals("TOP4TEAMBR"))
 			{
-				String urlParameters = "apiKey=" + Configurations.TOP4TEAMBR_API_KEY + "&type=1&player=";
+				String urlParameters = "apiKey=" + Configurations.TOP4TEAMBR_API_KEY;
 				byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
 				int postDataLength = postData.length;
 				connection.setRequestMethod("POST");
@@ -139,16 +170,19 @@ public abstract class IResponse
 		{
 			if (Configurations.DEBUG)
 				_log.error("Socket:" + sex.getMessage(), sex);
+			Gui.getInstance().ConsoleWrite("Error: " + sex.getMessage());
 		}
 		catch (final FileNotFoundException fnfe)
 		{
 			if (Configurations.DEBUG)
 				_log.error("Socket:" + fnfe.getMessage(), fnfe);
+			Gui.getInstance().ConsoleWrite("Error: " + fnfe.getMessage());
 		}
 		catch (final Exception ex)
 		{
 			if (Configurations.DEBUG)
 				_log.error("Exception:" + ex.getMessage(), ex);
+			Gui.getInstance().ConsoleWrite("Error: " + ex.getMessage());
 		}
 		finally
 		{

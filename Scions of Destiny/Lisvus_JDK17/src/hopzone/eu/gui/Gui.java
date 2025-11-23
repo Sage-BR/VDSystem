@@ -47,15 +47,20 @@ import java.net.URL;
  * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
  * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
  *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * Quick Guide: https://github.com/Sage-BR/VDSystem/tree/master/Guide
  */
 public class Gui extends JFrame
 {
+	/**
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = 7507031628376127743L;
+
 	// console
 	private JTextArea console;
 
 	// menu
-	private JMenu menuServer, menuDonate, menuAbout;
+	private JMenu menuServer, menuAbout;
 
 	// box
 	private Box box;
@@ -109,8 +114,6 @@ public class Gui extends JFrame
 		// set menu item
 		menuServer = new JMenu("Server");
 		menuBar.add(menuServer);
-		menuDonate = new JMenu("Donates");
-		menuBar.add(menuDonate);
 		menuAbout = new JMenu("About");
 		menuBar.add(menuAbout);
 		menuBar.setBackground(Color.black);
@@ -523,31 +526,9 @@ public class Gui extends JFrame
 
 		// server info
 		JMenuItem server_info = new JMenuItem("Server info");
-		server_info.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_SERVER_URL.toString()));
-		server_info.setToolTipText("<html>Visit server info at iTopZ</html>");
+		server_info.addActionListener(al -> Utilities.openUrl(Url.FORTEAMSITE.toString()));
+		server_info.setToolTipText("<html>Visit server info at 4TeamBR</html>");
 		menuServer.add(server_info);
-
-		// donate settings
-		JMenuItem donate_settings = new JMenuItem("Donate Settings");
-		donate_settings.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_URL.toString() + "donate_settings/" + Configurations.ITOPZ_SERVER_ID));
-		donate_settings.setToolTipText("<html>Visit donate settings at iTopZ</html>");
-		menuDonate.add(donate_settings);
-
-		// donate payments
-		JMenuItem donate_payments = new JMenuItem("Donate Payments");
-		donate_payments.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_URL.toString() + "donate_payments/" + Configurations.ITOPZ_SERVER_ID));
-		donate_payments.setToolTipText("<html>Visit donate payments at iTopZ</html>");
-		menuDonate.add(donate_payments);
-
-		// donate announce
-		JMenuItem donate_inform = new JMenuItem("Donate Announce link");
-		donate_inform.addActionListener(al ->
-		{
-			Utilities.announce("iTopZ", "Donate for our server at " + Url.ITOPZ_URL.toString() + "donate/" + Configurations.ITOPZ_SERVER_ID);
-			ConsoleWrite("Announce send to server");
-		});
-		donate_inform.setToolTipText("<html>Inform all players about donate link</html>");
-		menuDonate.add(donate_inform);
 
 		// bug report
 		JMenuItem report = new JMenuItem("Bug report");
@@ -556,9 +537,9 @@ public class Gui extends JFrame
 		menuAbout.add(report);
 
 		// about itopz
-		JMenuItem about = new JMenuItem("iTopZ");
-		about.addActionListener(al -> Utilities.openUrl(Url.ITOPZ_SERVER_URL.toString()));
-		about.setToolTipText("<html>Visit iTopZ</html>");
+		JMenuItem about = new JMenuItem("4TeamBR");
+		about.addActionListener(al -> Utilities.openUrl(Url.FORTEAMSITE.toString()));
+		about.setToolTipText("<html>Visit 4TeamBR</html>");
 		menuAbout.add(about);
 
 		// about itopz discord
@@ -566,30 +547,6 @@ public class Gui extends JFrame
 		discord.addActionListener(al -> Utilities.openUrl(Url.DISCORD.toString()));
 		discord.setToolTipText("<html>Visit Discord</html>");
 		menuAbout.add(discord);
-
-		// about denart designs
-		JMenuItem denart_designs = new JMenuItem("GFX Designer");
-		denart_designs.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS.toString()));
-		denart_designs.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs);
-		
-		// shop donate denart designs
-		JMenuItem denart_designs_donate = new JMenuItem("Donate Panel v4");
-		denart_designs_donate.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS_DONATE_PANEL.toString()));
-		denart_designs_donate.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs_donate);
-		
-		// shop vote denart designs
-		JMenuItem denart_designs_vote = new JMenuItem("Vote Panel");
-		denart_designs_vote.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS_VOTE_PANEL.toString()));
-		denart_designs_vote.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs_vote);
-		
-		// shop referral denart designs
-		JMenuItem denart_designs_referral = new JMenuItem("Referral Panel");
-		denart_designs_referral.addActionListener(al -> Utilities.openUrl(Url.DENART_DESIGNS_REFERRAL_PANEL.toString()));
-		denart_designs_referral.setToolTipText("<html>Visit Denart Designs</html>");
-		menuAbout.add(denart_designs_referral);
 	}
 
 	/**
